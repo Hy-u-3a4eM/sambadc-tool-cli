@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "version.h"
-
-#define PROGRAM_NAME ("sambadc-tool-cli")
-#define PACKAGE_NAME ("sambadc-tool-cli")
-
 void usage(int status) {
 	printf("\
 			Использование: %s\n\
