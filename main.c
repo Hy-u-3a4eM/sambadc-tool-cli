@@ -1,22 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "version.h"
 
-#define PROGRAM_NAME ("sambadc-tool-cli")
-#define PACKAGE_NAME ("sambadc-tool-cli")
+#define PROGRAM_NAME 	("sambadc-tool-cli")
+#define PACKAGE_NAME 	("sambadc-tool-cli")
 
-void usage(int status) {
+#define COPYRIGHT_YEAR	2024
+
+void usage(int status, char *program_name) {
 	printf("\
 			Использование: %s\n\
-			");
+			", program_name);
 
 	//if (status != EXIT_SUCCESS)
 	//	return status;
-	return status;
+	exit(status);
 }
 
-const char version_etc_copyright[] = "Copyright";
+const char version_etc_copyright[] = "Copyright %s %d Artur.";
 
 void version_etc(FILE *stream,
              const char *command_name, const char *package,
@@ -26,26 +29,33 @@ void version_etc(FILE *stream,
 	else
 		fprintf (stream, "%s %s\n", package, version);
 
-	fprintf (stream, version_etc_copyright, _("(C)"), COPYRIGHT_YEAR);
+	fprintf (stream, version_etc_copyright, "(C)", COPYRIGHT_YEAR);
 
 	fputs ("\n", stream);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
 	if (argc == 2) {
 		if (strcmp(argv[1], "--help") == 0)
-			usage(EXIT_SUCCESS);
-		if (strcmp(argv[1], "--version" == 0)
-			version_etc(stdout, PROGRAM_NAME, PACKAGE_NAME, Version);
+			usage(EXIT_SUCCESS, argv[0]);
+		if (strcmp(argv[1], "--version") == 0)
+			version_etc(stdout, PROGRAM_NAME, PACKAGE_NAME, VERSION);
 	}
 	if (argc != 1)
-		usage(EXIT_FAILURE);
+		usage(EXIT_FAILURE, argv[0]);
 
 	char command[16];
 
 	while (1) {
-		printf("\nВыберите подкоманду:\n");
-		printf("\tcreate\t\t- Добавить нового пользователя.\n"
+		printf("\nВыберите подкоманду:\n\
+				\tcreate\t\t- Добавить нового пользователя.\n\
+				\tback");	// TODO: доделать
+
+		scanf("%15s", command);
+
+		//if (strcmp(command, "create") == 0)
+			//create();
+	}
 
 	// TODO: имя, фамилия, полное имя, инициалы, имя для входа (uppo.int), имя для входа (до винды 2000), пароль, подтвердите пароль
 	// TODO: пользователь должен сменить пароль при следующем входе в систему, пользователь не может изменить пароль, пароль не истекает, учетная запись отключена

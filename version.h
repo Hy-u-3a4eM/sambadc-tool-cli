@@ -6,4 +6,9 @@
 #define VERSION_RELEASELEVEL	("final")
 #define VERSION_SERIAL		0
 
-const char Version[] = sprintf("%d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_MICRO);
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+#define VERSION TOSTRING(VERSION_MAJOR) "." \
+	TOSTRING(VERSION_MINOR) "." \
+	TOSTRING(VERSION_MICRO)
