@@ -50,7 +50,8 @@ void user_create() {
 
 	FILE *fp = popen(command, "r");
 	if (fp == NULL) {
-		FATAL("Ошибка при выполнении команды.\n");
+		fprintf(stderr, "Ошибка при выполнении команды.\n");
+		exit(EXIT_FAILURE);
 	}
 
 	while (fgets(output, sizeof(output), fp) != NULL) {

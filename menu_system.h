@@ -10,7 +10,7 @@ int top = -1;
 
 void push(int *, int *, int);
 
-void pop(int *, int *);
+int pop(int *, int *);
 
 void userMenu(int *, int *);
 
