@@ -5,8 +5,8 @@
 
 typedef void (*MenuFunction)(int *, int *);
 
-int stack[MAX_MENUS];
-int top = -1;
+extern int stack[MAX_MENUS];
+extern int top;
 
 void push(int *, int *, int);
 

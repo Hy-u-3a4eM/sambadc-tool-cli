@@ -7,6 +7,9 @@
 #include "system.h"
 #include "user/user_create.h"
 
+int stack[MAX_MENUS];
+int top = -1;
+
 typedef void (*MenuFunction)(int *stack, int *top);
 
 void push(int *stack, int *top, int value) {
@@ -40,11 +43,13 @@ void userMenu(int *stack, int *top) {
 	scanf("%15s", choice);
 
 	if (strcmp(choice, "create") == 0) {
-		push(stack, top, 0);
+		//push(stack, top, 0);
 		user_create();
 	} else if (strcmp(choice, "back") == 0) {
+		pop(stack, top);
 		mainMenu(stack, top);
 	} else if (strcmp(choice, "home") == 0) {
+		pop(stack, top);
 		mainMenu(stack, top);
 	} else if (strcmp(choice, "exit") == 0) {
 		exit(EXIT_SUCCESS);
