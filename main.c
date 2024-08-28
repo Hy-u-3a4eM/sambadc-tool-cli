@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "version.h"
+#include "system.h"
+#include "menu_system.h"
 
 #define PROGRAM_NAME 	("sambadc-tool-cli")
 #define PACKAGE_NAME 	("sambadc-tool-cli")
@@ -32,6 +34,8 @@ void version_etc(FILE *stream,
 	fprintf (stream, version_etc_copyright, "(C)", COPYRIGHT_YEAR);
 
 	fputs ("\n", stream);
+
+	exit(EXIT_SUCCESS);
 }
 
 int main(int argc, char *argv[]) {
@@ -44,18 +48,7 @@ int main(int argc, char *argv[]) {
 	if (argc != 1)
 		usage(EXIT_FAILURE, argv[0]);
 
-	char command[16];
-
-	while (1) {
-		printf("\nВыберите подкоманду:\n\
-				\tcreate\t\t- Добавить нового пользователя.\n\
-				\tback");	// TODO: доделать
-
-		scanf("%15s", command);
-
-		//if (strcmp(command, "create") == 0)
-			//create();
-	}
+	mainMenu(stack, &top);
 
 	// TODO: имя, фамилия, полное имя, инициалы, имя для входа (uppo.int), имя для входа (до винды 2000), пароль, подтвердите пароль
 	// TODO: пользователь должен сменить пароль при следующем входе в систему, пользователь не может изменить пароль, пароль не истекает, учетная запись отключена

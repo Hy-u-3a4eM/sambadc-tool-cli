@@ -1,7 +1,7 @@
 CC = clang
 CFLAGS = -Wall -Wextra -I. -std=gnu2x
 
-SRCS = main.c
+SRCS = main.c system.c user/user_create.c menu_system.c
 
 OBJS = $(SRCS:.c=.o)
 
