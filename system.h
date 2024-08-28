@@ -9,4 +9,6 @@ void fatal(const char *restrict, int line, const char *restrict, const char *res
 
 _Bool get_yes_no_answer();
 
+void clear_stdin();
+
 #endif // SYSTEM_H

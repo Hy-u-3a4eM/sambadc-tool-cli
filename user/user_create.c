@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "user_create.h"
 #include "system.h"
@@ -18,26 +19,32 @@ void user_create() {
 
 	char output[MAX_OUTPUT];
 
+	clear_stdin();
 
 	printf("Введите имя для входа: ");
 	fgets(username, MAX_LENGTH, stdin);
 	username[strcspn(username, "\n")] = 0;
+	//clear_stdin();
 
 	printf("Введите пароль пользователя: ");
 	fgets(password, MAX_LENGTH, stdin);
 	password[strcspn(password, "\n")] = 0;
+	//clear_stdin();
 
 	printf("Введите имя пользователя (настоящее имя человека): ");
 	fgets(given_name, MAX_LENGTH, stdin);
 	given_name[strcspn(given_name, "\n")] = 0;
+	//clear_stdin();
 
 	printf("Введите фамилию пользователя: ");
 	fgets(surname, MAX_LENGTH, stdin);
 	surname[strcspn(surname, "\n")] = 0;
+	//clear_stdin();
 
 	printf("Введите инициалы пользователя: ");
-	fgets(surname, MAX_LENGTH, stdin);
-	surname[strcspn(surname, "\n")] = 0;
+	fgets(initials, MAX_LENGTH, stdin);
+	initials[strcspn(initials, "\n")] = 0;
+	//clear_stdin();
 
 	printf("Пользователь должен сменить пароль? [Y/n] ");
 	must_change_at_next_login = get_yes_no_answer();

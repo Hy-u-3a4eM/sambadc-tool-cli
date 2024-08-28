@@ -26,4 +26,12 @@ _Bool get_yes_no_answer() {
 		return true;
 	else
 		return false;
+
+	fflush(stdin);
+}
+
+void clear_stdin() {
+	int ch;
+	while ((ch = getchar()) != '\n' && ch != EOF)
+		;
 }
