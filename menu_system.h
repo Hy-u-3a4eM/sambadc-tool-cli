@@ -16,4 +16,6 @@ void userMenu(int *, int *);
 
 void mainMenu(int *, int *);
 
+void runMainMenu();
+
 #endif // MENU_SYSTEM_H

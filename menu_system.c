@@ -74,3 +74,7 @@ void mainMenu(int *stack, int *top) {
 		mainMenu(stack, top);
 	}
 }
+
+void runMainMenu() {
+	mainMenu(stack, &top);
+}

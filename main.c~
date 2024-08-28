@@ -4,7 +4,7 @@
 
 #include "version.h"
 #include "system.h"
-#include "user/user_create.h"
+#include "menu_system.h"
 
 #define PROGRAM_NAME 	("sambadc-tool-cli")
 #define PACKAGE_NAME 	("sambadc-tool-cli")

@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Wall -Wextra -I. -std=gnu2x
+CFLAGS = -Wall -Wextra -I. -std=gnu2x -v
 
 SRCS = main.c system.c user/user_create.c menu_system.c
 
@@ -12,7 +12,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-%.0: %.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
