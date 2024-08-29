@@ -21,17 +21,7 @@ void user_create() {
 
 	clear_stdin();
 
-	printf("Введите имя для входа: ");
-	fgets(username, MAX_LENGTH, stdin);
-	username[strcspn(username, "\n")] = 0;
-	//clear_stdin();
-
-	printf("Введите пароль пользователя: ");
-	fgets(password, MAX_LENGTH, stdin);
-	password[strcspn(password, "\n")] = 0;
-	//clear_stdin();
-
-	printf("Введите имя пользователя (настоящее имя человека): ");
+	printf("Введите имя пользователя (настоящее имя человека, не логин!): ");
 	fgets(given_name, MAX_LENGTH, stdin);
 	given_name[strcspn(given_name, "\n")] = 0;
 	//clear_stdin();
@@ -49,11 +39,23 @@ void user_create() {
 	printf("Пользователь должен сменить пароль? [Y/n] ");
 	must_change_at_next_login = get_yes_no_answer();
 
+	printf("Введите имя для входа (логин): ");
+	fgets(username, MAX_LENGTH, stdin);
+	username[strcspn(username, "\n")] = 0;
+	//clear_stdin();
+
+	printf("Введите пароль пользователя: ");
+	fgets(password, MAX_LENGTH, stdin);
+	password[strcspn(password, "\n")] = 0;
+	//clear_stdin();
+
 
 	snprintf(command, sizeof(command),
 			"samba-tool user create '%s' '%s' --given-name='%s' --surname='%s' --initials='%s' %s 2>&1",
 			username, password, given_name, surname, initials,
 			must_change_at_next_login ? "--must-change-at-next-login" : "");
+
+	printf("  > %s\n", command);
 
 	FILE *fp = popen(command, "r");
 	if (fp == NULL) {
@@ -62,7 +64,7 @@ void user_create() {
 	}
 
 	while (fgets(output, sizeof(output), fp) != NULL) {
-		printf("%s\n", output);
+		printf("%s", output);
 	}
 
 	int status = pclose(fp);
