@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Wall -Wextra -I. -std=gnu2x -v
+CFLAGS = -Wall -Wextra -I. -std=gnu2x -O3 -v
 
 SRCS = main.c system.c user/user_create.c menu_system.c
 
