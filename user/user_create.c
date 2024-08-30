@@ -7,12 +7,12 @@
 #include "system.h"
 
 void user_create() {
-	char username[MAX_LENGTH];
-	char password[MAX_LENGTH];
-	char given_name[MAX_LENGTH];
-	char surname[MAX_LENGTH];
-	//char full_name[MAX_LENGTH * 2 + 1];
-	char initials[MAX_LENGTH];
+	char username[MAX_LENGTH] = "";
+	char password[MAX_LENGTH] = "";
+	char given_name[MAX_LENGTH] = "";
+	char surname[MAX_LENGTH] = "";
+	//char full_name[MAX_LENGTH * 2 + 1] = "";
+	char initials[MAX_LENGTH] = "";
 	_Bool must_change_at_next_login = true;
 
 	char command[MAX_LENGTH * 8];
@@ -21,17 +21,17 @@ void user_create() {
 
 	clear_stdin();
 
-	printf("Введите имя пользователя (настоящее имя человека, не логин!): ");
+	printf("Введите имя пользователя (настоящее имя человека, не логин!): [] ");
 	fgets(given_name, MAX_LENGTH, stdin);
 	given_name[strcspn(given_name, "\n")] = 0;
 	//clear_stdin();
 
-	printf("Введите фамилию пользователя: ");
+	printf("Введите фамилию пользователя: [] ");
 	fgets(surname, MAX_LENGTH, stdin);
 	surname[strcspn(surname, "\n")] = 0;
 	//clear_stdin();
 
-	printf("Введите инициалы пользователя: ");
+	printf("Введите инициалы пользователя: [] ");
 	fgets(initials, MAX_LENGTH, stdin);
 	initials[strcspn(initials, "\n")] = 0;
 	//clear_stdin();
@@ -51,9 +51,12 @@ void user_create() {
 
 
 	snprintf(command, sizeof(command),
-			"samba-tool user create '%s' '%s' --given-name='%s' --surname='%s' --initials='%s' %s 2>&1",
-			username, password, given_name, surname, initials,
-			must_change_at_next_login ? "--must-change-at-next-login" : "");
+			"samba-tool user create '%s' '%s' %s%s%s%s%s%s%s%s%s%s2>&1",
+			username, password,
+			(strlen(given_name) > 0) ? "--given-name='" : "", given_name, (strlen(given_name) > 0) ? "' " : "",
+			(strlen(surname) > 0) ? "--surname='" : "", surname, (strlen(surname) > 0) ? "' " : "",
+			(strlen(initials) > 0) ? "--initials='" : "", initials, (strlen(initials) > 0) ? "' " : "",
+			must_change_at_next_login ? "--must-change-at-next-login " : "");
 
 	printf("  > %s\n", command);
 
